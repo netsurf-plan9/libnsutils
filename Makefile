@@ -23,6 +23,7 @@ else
   # __inline__ is a GCCism
   CFLAGS := $(CFLAGS) -Dinline="__inline__"
 endif
+CFLAGS := $(CFLAGS) -D_POSIX_C_SOURCE=200809L
 
 TESTCFLAGGS := -g -O2
 TESTLDFLAGS := -lm -l$(COMPONENT) $(TESTLDFLAGS)
