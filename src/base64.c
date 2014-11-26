@@ -33,7 +33,7 @@ static uint8_t encoding_table[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
 static unsigned int mod_table[] = {0, 2, 1};
 
 /* exported interface documented in nsutils/base64.h */
-nserror base64_encode_alloc(const uint8_t *input,
+nserror nsu_base64_encode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length)
@@ -76,7 +76,7 @@ nserror base64_encode_alloc(const uint8_t *input,
 
 
 /* exported interface documented in nsutils/base64.h */
-nserror base64_decode_alloc(const uint8_t *input,
+nserror nsu_base64_decode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length)

@@ -32,10 +32,13 @@ int main(int argc, char**argv)
     
     if (argc == 1) {
         /* encode */
-        base64_encode_alloc(buffer, buffer_len, &output, &output_len);
-    } else {
+        nsu_base64_encode_alloc(buffer, buffer_len, &output, &output_len);
+    } else if ((argv[1][0] == '-') && (argv[1][1] == 'd')) {
         /* decode */
-        base64_decode_alloc(buffer, buffer_len, &output, &output_len);
+        nsu_base64_decode_alloc(buffer, buffer_len, &output, &output_len);
+    } else {
+        fprintf(stderr, "Usage: %s [-d]\n", argv[0]);
+        return 1;
     }
 
     if (output != NULL) {
@@ -44,5 +47,6 @@ int main(int argc, char**argv)
     }
 
     free(buffer);
-    
+
+    return 0;
 }

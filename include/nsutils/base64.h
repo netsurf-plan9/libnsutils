@@ -17,12 +17,12 @@
 
 #include <nsutils/errors.h>
 
-nserror base64_encode_alloc(const uint8_t *input,
+nserror nsu_base64_encode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length);
 
-nserror base64_decode_alloc(const uint8_t *input,
+nserror nsu_base64_decode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length);
