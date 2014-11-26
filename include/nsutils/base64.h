@@ -28,10 +28,10 @@
  * \param output_length The length of data placed in \a output
  * \return NSERROR_OK on success and \a output updated else error code.
  */
-nserror nsu_base64_encode_alloc(const uint8_t *input,
-                            size_t input_length,
-                            uint8_t **output,
-                            size_t *output_length);
+nsuerror nsu_base64_encode_alloc(const uint8_t *input,
+                                 size_t input_length,
+                                 uint8_t **output,
+                                 size_t *output_length);
 
 /**
  * Base 64 decode data.
@@ -44,9 +44,9 @@ nserror nsu_base64_encode_alloc(const uint8_t *input,
  * \param output_length The length of data placed in \a output
  * \return NSERROR_OK on success and \a output updated else error code.
  */
-nserror nsu_base64_decode_alloc(const uint8_t *input,
-                            size_t input_length,
-                            uint8_t **output,
-                            size_t *output_length);
+nsuerror nsu_base64_decode_alloc(const uint8_t *input,
+                                 size_t input_length,
+                                 uint8_t **output,
+                                 size_t *output_length);
  
 #endif

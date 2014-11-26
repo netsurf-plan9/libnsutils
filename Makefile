@@ -33,5 +33,6 @@ include $(NSBUILD)/Makefile.top
 I := /include/nsutils
 INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/errors.h
 INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/base64.h
+INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/time.h
 INSTALL_ITEMS := $(INSTALL_ITEMS) /$(LIBDIR)/pkgconfig:lib$(COMPONENT).pc.in
 INSTALL_ITEMS := $(INSTALL_ITEMS) /$(LIBDIR):$(OUTPUT)

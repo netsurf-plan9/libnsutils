@@ -14,12 +14,19 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+#include <sys/time.h>
 
 #include "nsutils/time.h"
 
-nserror nsu_nsu_getmonotonic_ms(uint64_t *current)
+/* exported interface documented in nsutils/time.h */
+nsuerror nsu_nsu_getmonotonic_ms(uint64_t *current)
 {
-    return NSERROR_NOT_IMPLEMENTED;
+    /** \todo Implement this properly! */
+    struct timeval tv;
+
+    gettimeofday(&tv, NULL);
+
+    *current = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+
+    return NSUERROR_OK;
 }

@@ -19,60 +19,60 @@
  * Enumeration of error codes
  */
 typedef enum {
-	NSERROR_OK,			/**< No error */
+	NSUERROR_OK,			/**< No error */
 
-	NSERROR_UNKNOWN,		/**< Unknown error - DO *NOT* USE */
+	NSUERROR_UNKNOWN,		/**< Unknown error - DO *NOT* USE */
 
-	NSERROR_NOMEM,			/**< Memory exhaustion */
+	NSUERROR_NOMEM,			/**< Memory exhaustion */
 
-	NSERROR_NO_FETCH_HANDLER,	/**< No fetch handler for URL scheme */
+	NSUERROR_NO_FETCH_HANDLER,	/**< No fetch handler for URL scheme */
 
-	NSERROR_NOT_FOUND,		/**< Requested item not found */
+	NSUERROR_NOT_FOUND,		/**< Requested item not found */
 
-	NSERROR_NOT_DIRECTORY,           /**< Missing directory */
+	NSUERROR_NOT_DIRECTORY,           /**< Missing directory */
 
-	NSERROR_SAVE_FAILED,		/**< Failed to save data */
+	NSUERROR_SAVE_FAILED,		/**< Failed to save data */
 
-	NSERROR_CLONE_FAILED,		/**< Failed to clone handle */
+	NSUERROR_CLONE_FAILED,		/**< Failed to clone handle */
 
-	NSERROR_INIT_FAILED,		/**< Initialisation failed */
+	NSUERROR_INIT_FAILED,		/**< Initialisation failed */
 
-	NSERROR_MNG_ERROR,		/**< An MNG error occurred */
+	NSUERROR_MNG_ERROR,		/**< An MNG error occurred */
 
-	NSERROR_BAD_ENCODING,		/**< The character set is unknown */
+	NSUERROR_BAD_ENCODING,		/**< The character set is unknown */
 
-	NSERROR_NEED_DATA,		/**< More data needed */
+	NSUERROR_NEED_DATA,		/**< More data needed */
 
-	NSERROR_ENCODING_CHANGE,	/**< The character changed */
+	NSUERROR_ENCODING_CHANGE,	/**< The character changed */
 
-	NSERROR_BAD_PARAMETER,		/**< Bad Parameter */
+	NSUERROR_BAD_PARAMETER,		/**< Bad Parameter */
 
-	NSERROR_INVALID,		/**< Invalid data */
+	NSUERROR_INVALID,		/**< Invalid data */
 
-	NSERROR_BOX_CONVERT,		/**< Box conversion failed */
+	NSUERROR_BOX_CONVERT,		/**< Box conversion failed */
 
-	NSERROR_STOPPED,		/**< Content conversion stopped */
+	NSUERROR_STOPPED,		/**< Content conversion stopped */
 
-	NSERROR_DOM,	                /**< DOM call returned error */
+	NSUERROR_DOM,	                /**< DOM call returned error */
 
-	NSERROR_CSS,	                /**< CSS call returned error */
+	NSUERROR_CSS,	                /**< CSS call returned error */
 
-	NSERROR_CSS_BASE,               /**< CSS base sheet failed */
+	NSUERROR_CSS_BASE,               /**< CSS base sheet failed */
 
-	NSERROR_BAD_URL,		/**< Bad URL */
+	NSUERROR_BAD_URL,		/**< Bad URL */
 
-	NSERROR_BAD_CONTENT,		/**< Bad Content */
+	NSUERROR_BAD_CONTENT,		/**< Bad Content */
 
-	NSERROR_FRAME_DEPTH,            /**< Exceeded frame depth */
+	NSUERROR_FRAME_DEPTH,            /**< Exceeded frame depth */
 
-	NSERROR_PERMISSION,             /**< Permission error */
+	NSUERROR_PERMISSION,             /**< Permission error */
 
-	NSERROR_NOSPACE,		/**< Insufficient space */
+	NSUERROR_NOSPACE,		/**< Insufficient space */
 
-	NSERROR_BAD_SIZE,               /**< Bad size */
+	NSUERROR_BAD_SIZE,               /**< Bad size */
 
-	NSERROR_NOT_IMPLEMENTED,        /**< Functionality is not implemented */
-} nserror;
+	NSUERROR_NOT_IMPLEMENTED,        /**< Functionality is not implemented */
+} nsuerror;
 
 #endif
 

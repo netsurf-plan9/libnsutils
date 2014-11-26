@@ -33,7 +33,7 @@ static uint8_t encoding_table[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
 static unsigned int mod_table[] = {0, 2, 1};
 
 /* exported interface documented in nsutils/base64.h */
-nserror nsu_base64_encode_alloc(const uint8_t *input,
+nsuerror nsu_base64_encode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length)
@@ -47,7 +47,7 @@ nserror nsu_base64_encode_alloc(const uint8_t *input,
 
         encoded = malloc(encoded_len);
         if (encoded == NULL) {
-                return NSERROR_NOMEM;
+                return NSUERROR_NOMEM;
         }
 
         for (i = 0, j = 0; i < input_length;) {
@@ -71,12 +71,12 @@ nserror nsu_base64_encode_alloc(const uint8_t *input,
         *output = encoded;
         *output_length = encoded_len;
 
-        return NSERROR_OK;
+        return NSUERROR_OK;
 }
 
 
 /* exported interface documented in nsutils/base64.h */
-nserror nsu_base64_decode_alloc(const uint8_t *input,
+nsuerror nsu_base64_decode_alloc(const uint8_t *input,
                             size_t input_length,
                             uint8_t **output,
                             size_t *output_length)
@@ -104,7 +104,7 @@ nserror nsu_base64_decode_alloc(const uint8_t *input,
 
         decoded = malloc(decoded_len);
         if (decoded == NULL) {
-                return NSERROR_NOMEM;
+                return NSUERROR_NOMEM;
         }
 
         sextet_idx = 0;
@@ -177,5 +177,5 @@ nserror nsu_base64_decode_alloc(const uint8_t *input,
         *output = decoded;
         *output_length = opidx;
 
-        return NSERROR_OK;
+        return NSUERROR_OK;
 }
