@@ -26,6 +26,6 @@
  * \param current The current value of the counter.
  * \return NSERROR_OK on success else error code.
  */
-nsuerror nsu_nsu_getmonotonic_ms(uint64_t *current);
+nsuerror nsu_getmonotonic_ms(uint64_t *current);
  
 #endif

@@ -19,7 +19,7 @@
 #include "nsutils/time.h"
 
 /* exported interface documented in nsutils/time.h */
-nsuerror nsu_nsu_getmonotonic_ms(uint64_t *current)
+nsuerror nsu_getmonotonic_ms(uint64_t *current)
 {
     /** \todo Implement this properly! */
     struct timeval tv;
