@@ -21,6 +21,8 @@
 #elif defined(__riscos)
 #include <oslib/os.h>
 #elif defined(__MACH__)
+#include <mach/mach.h>
+#include <mach/clock.h>
 #include <mach/mach_time.h>
 #else
 #include <sys/time.h>
