@@ -6,5 +6,5 @@ includedir=${prefix}/include
 Name: libnsutils
 Description: NetSurf utilities
 Version: VERSION
-Libs: -L${libdir} -lnsutils
+Libs: -L${libdir} -lnsutils -lrt
 Cflags: -I${includedir}
