@@ -16,10 +16,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#if defined(_POSIX_TIMERS) && (_POSIX_TIMERS > 0) && (defined _POSIX_MONOTONIC_CLOCK)
+#if (defined(_POSIX_TIMERS) && (_POSIX_TIMERS > 0) && (defined _POSIX_MONOTONIC_CLOCK)) || defined(__OpenBSD__)
 #include <time.h>
 #elif defined(__riscos)
 #include <oslib/os.h>
+#elif defined(__MACH__)
+#include <mach/mach_time.h>
 #else
 #include <sys/time.h>
 #endif
@@ -31,7 +33,7 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
     uint64_t current;
     static uint64_t prev = 0; /* previous time so we never go backwards */
 
-#if defined(_POSIX_TIMERS) && (_POSIX_TIMERS > 0) && (defined _POSIX_MONOTONIC_CLOCK)
+#if (defined(_POSIX_TIMERS) && (_POSIX_TIMERS > 0) && (defined _POSIX_MONOTONIC_CLOCK)) || defined(__OpenBSD__)
     struct timespec tp;
 
     clock_gettime(CLOCK_MONOTONIC, &tp);
@@ -41,6 +43,15 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
 
     time = os_read_monotonic_time();
     current = time * 10;
+#elif defined(__MACH__)
+    clock_serv_t cclock;
+    mach_timespec_t mts;
+
+    host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock);
+    clock_get_time(cclock, &mts);
+    mach_port_deallocate(mach_task_self(), cclock);
+
+    current = (mts.tv_sec * 1000) + (mts.tv_nsec / 1000000);
 #else
 #warning "Using dodgy gettimeofday() fallback"
     /** \todo Implement this properly! */
