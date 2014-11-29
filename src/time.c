@@ -69,8 +69,8 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
         *current_out = current;
         prev = current;
     } else {
-        /** \todo is 10ms really correct or can we calculate a delta going forwards? */
-        prev += 10;
+        /** \todo is 1ms really correct or can we calculate a delta going forwards? */
+        prev += 1;
         *current_out = prev;
     }
     return NSUERROR_OK;
