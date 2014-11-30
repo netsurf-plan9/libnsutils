@@ -63,7 +63,7 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
 #elif defined(__amiga)
     struct EClockVal eclockval;
     int freq = 0;
-	uint64 eclock;
+    uint64 eclock;
 
     /* NB: The calling task must already have opened timer.device
      * and obtained the interface.
@@ -74,7 +74,7 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
 #endif
 
     freq = ReadEClock(&eclockval) / 1000;
-	eclock = ((uint64)eclockval.ev_hi << 32) | (eclockval.ev_lo);
+    eclock = ((uint64)eclockval.ev_hi << 32) | (eclockval.ev_lo);
     current = eclock / freq;
 #else
 #warning "Using dodgy gettimeofday() fallback"
