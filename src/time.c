@@ -24,7 +24,10 @@
 #include <mach/mach.h>
 #include <mach/clock.h>
 #include <mach/mach_time.h>
-#elif defined(__amigaos4__)
+#elif defined(__amiga)
+#ifdef __amigaos4__
+#define __USE_INLINE__ 1
+#endif
 #include <assert.h>
 #include <proto/timer.h>
 #else
@@ -57,16 +60,22 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
     mach_port_deallocate(mach_task_self(), cclock);
 
     current = (mts.tv_sec * 1000) + (mts.tv_nsec / 1000000);
-#elif defined(__amigaos4__)
-    struct TimeVal tv;
+#elif defined(__amiga)
+    struct EClockVal eclockval;
+    int freq = 0;
+	uint64 eclock;
 
     /* NB: The calling task must already have opened timer.device
      * and obtained the interface.
      */
+    assert(TimerBase != NULL);
+#ifdef __amigaos4__
     assert(ITimer != NULL);
+#endif
 
-    ITimer->GetUpTime(&tv);
-    current = (tv.Seconds * 1000) + (tv.Microseconds / 1000);
+    freq = ReadEClock(&eclockval) / 1000;
+	eclock = ((uint64)eclockval.ev_hi << 32) | (eclockval.ev_lo);
+    current = eclock / freq;
 #else
 #warning "Using dodgy gettimeofday() fallback"
     /** \todo Implement this properly! */
