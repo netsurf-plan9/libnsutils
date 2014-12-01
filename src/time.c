@@ -87,12 +87,10 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
 #endif
 
     /* ensure time never goes backwards */
-    if (current > prev) {
+    if (current >= prev) {
         *current_out = current;
         prev = current;
     } else {
-        /** \todo is 1ms really correct or can we calculate a delta going forwards? */
-        prev += 1;
         *current_out = prev;
     }
     return NSUERROR_OK;

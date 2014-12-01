@@ -18,14 +18,11 @@
 #include <nsutils/errors.h>
 
 /**
- * Get a monotonically incriminating number of milliseconds.
+ * Get a monotonically incrementing number of milliseconds.
  *
  * Obtain a count of elapsed time in milliseconds from an arbitrary point in
  * time. Unlike gettimeofday this will continue linearly across time setting
  * and not go backwards.
- *
- * \note The read value will always increment by at least 1 on each call meaning
- * times less than 1ms cannot be differentiated.
  *
  * \param current The current value of the counter.
  * \return NSERROR_OK on success else error code.
