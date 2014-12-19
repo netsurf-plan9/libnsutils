@@ -30,7 +30,7 @@ REQUIRED_LIBS := nsutils
 # Strictly the requirement for rt is dependant on both the clib and if
 # the build is using rt features like clock_gettime() but this check
 # will suffice
-ifeq ($(BUILD),x86_64-linux-gnu)
+ifeq ($(HOST),x86_64-linux-gnu)
   REQUIRED_LIBS := $(REQUIRED_LIBS) rt
 endif
 
