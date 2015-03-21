@@ -40,7 +40,7 @@ TESTLDFLAGS := -lm -l$(COMPONENT) $(TESTLDFLAGS)
 include $(NSBUILD)/Makefile.top
 
 # Extra installation rules
-I := /include/nsutils
+I := /$(INCLUDEDIR)/nsutils
 INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/errors.h
 INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/base64.h
 INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):include/nsutils/time.h
