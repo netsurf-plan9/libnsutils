@@ -23,7 +23,7 @@ WARNFLAGS := -Wall -W -Wundef -Wpointer-arith -Wcast-align \
 	-Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes \
 	-Wmissing-declarations -Wnested-externs
 
-CFLAGS := -D_BSD_SOURCE -D_DEFAULT_SOURCE \
+CFLAGS := -D_GNU_SOURCE -D_DEFAULT_SOURCE \
 	-I$(CURDIR)/include/ -I$(CURDIR)/src $(WARNFLAGS) $(CFLAGS)
 ifneq ($(GCCVER),2)
   CFLAGS := $(CFLAGS) -std=c99
