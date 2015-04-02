@@ -21,7 +21,7 @@
 /* exported interface documented in nsutils/unistd.h */
 ssize_t nsu_pwrite(int fd, const void *buf, size_t count, off_t offset)
 {
-#if defined(__riscos) || defined(__amiga)
+#if (defined(__riscos) || defined(__amiga) || defined(_WIN32))
         off_t sk;
 
         sk = lseek(fd, offset, SEEK_SET);
@@ -53,7 +53,7 @@ ssize_t nsu_pwrite(int fd, const void *buf, size_t count, off_t offset)
 /* exported interface documented in nsutils/unistd.h */
 ssize_t nsu_pread(int fd, void *buf, size_t count, off_t offset)
 {
-#if defined(__riscos)
+#if (defined(__riscos) || defined(_WIN32) || (defined(__amiga) && !defined(__amigaos4__)))
         off_t sk;
 
         sk = lseek(fd, offset, SEEK_SET);
