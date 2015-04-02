@@ -1,6 +1,12 @@
+#!/bin/make
+#
+# Makefile for libnsutils
+#
+# Copyright 2014-1015 Vincent Sanders <vince@netsurf-browser.org>
+
 # Component settings
 COMPONENT := nsutils
-COMPONENT_VERSION := 0.0.1
+COMPONENT_VERSION := 0.0.2
 # Default to a static library
 COMPONENT_TYPE ?= lib-static
 
@@ -16,6 +22,7 @@ TESTRUNNER = test/runtest.sh $(BUILDDIR) $(EXEEXT)
 WARNFLAGS := -Wall -W -Wundef -Wpointer-arith -Wcast-align \
 	-Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes \
 	-Wmissing-declarations -Wnested-externs
+
 CFLAGS := -I$(CURDIR)/include/ -I$(CURDIR)/src $(WARNFLAGS) $(CFLAGS)
 ifneq ($(GCCVER),2)
   CFLAGS := $(CFLAGS) -std=c99

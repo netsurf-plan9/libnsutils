@@ -9,7 +9,7 @@
 
 /**
  * \file
- * Base64 encoding and decoding interface.
+ * Time related operations.
  */
 
 #ifndef NSUTILS_TIME_H_
