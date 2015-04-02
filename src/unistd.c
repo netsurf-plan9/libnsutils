@@ -12,6 +12,7 @@
  * unistd style operations.
  */
 
+#include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
 
