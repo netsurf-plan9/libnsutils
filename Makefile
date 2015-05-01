@@ -42,7 +42,7 @@ ifeq ($(HOST),x86_64-linux-gnu)
   REQUIRED_LIBS := $(REQUIRED_LIBS) rt
 endif
 
-TESTCFLAGGS := -g -O2
+TESTCFLAGS := -g -O2
 TESTLDFLAGS := -lm -l$(COMPONENT) $(TESTLDFLAGS)
 
 include $(NSBUILD)/Makefile.top

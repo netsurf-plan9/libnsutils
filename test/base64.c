@@ -22,7 +22,7 @@
 int main(int argc, char**argv)
 {
     uint8_t *buffer;
-    size_t buffer_len;
+    size_t buffer_len=0;
     uint8_t *output;
     size_t output_len;
 
