@@ -62,7 +62,7 @@ nsuerror nsu_getmonotonic_ms(uint64_t *current_out)
     current = (mts.tv_sec * 1000) + (mts.tv_nsec / 1000000);
 #elif defined(__amiga)
     struct EClockVal eclockval;
-    int freq = 0;
+    uint32 freq = 0;
     uint64_t eclock;
 
     /* NB: The calling task must already have opened timer.device
