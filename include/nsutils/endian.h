@@ -13,6 +13,9 @@
 #ifndef NSUTILS_ENDIAN_H_
 #define NSUTILS_ENDIAN_H__
 
+#include <inttypes.h>
+#include <stdbool.h>
+
 /**
  * Detect if the host is little endian.
  *

@@ -15,6 +15,8 @@
 #ifndef NSUTILS_TIME_H_
 #define NSUTILS_TIME_H_
 
+#include <inttypes.h>
+
 #include <nsutils/errors.h>
 
 /**

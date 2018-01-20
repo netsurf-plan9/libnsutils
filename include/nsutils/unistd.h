@@ -15,6 +15,8 @@
 #ifndef NSUTILS_UNISTD_H_
 #define NSUTILS_UNISTD_H_
 
+#include <unistd.h>
+
 /**
  * Perform a write operation at a specific offset
  *
