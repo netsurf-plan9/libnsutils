@@ -6,7 +6,7 @@
 
 # Component settings
 COMPONENT := nsutils
-COMPONENT_VERSION := 0.0.4
+COMPONENT_VERSION := 0.0.5
 # Default to a static library
 COMPONENT_TYPE ?= lib-static
 

@@ -10,7 +10,7 @@
  * Endianness helper functions.
  */
 
-#ifndef NSUTILS_ENDIAN_H_
+#ifndef NSUTILS_ENDIAN_H__
 #define NSUTILS_ENDIAN_H__
 
 #include <inttypes.h>
