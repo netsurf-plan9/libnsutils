@@ -1,0 +1,17 @@
+</$objtype/mkfile
+
+CC=pcc
+OBJ=base64.$O time.$O unistd.$O
+HFILES=../include/nsutils/base64.h ../include/nsutils/endian.h ../include/nsutils/errors.h
+CFLAGS=-I ../include -I . -I ../../posix/include -D_BSD_EXTENSION -D_SUSV2_SOURCE -D_POSIX_SOURCE
+
+all:V:	libnsutils.$O.a
+
+libnsutils.$O.a: $OBJ $HFILES
+	ar rv libnsutils.$O.a $OBJ
+
+%.$O:	%.c $HFILES
+	$CC $CFLAGS -c -o $target $stem.c
+
+clean:V:
+	rm -f $OBJ libnsutils.$O.a
