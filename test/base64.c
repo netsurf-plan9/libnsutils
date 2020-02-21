@@ -16,37 +16,65 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <nsutils/base64.h>
 
 int main(int argc, char**argv)
 {
-    uint8_t *buffer;
-    size_t buffer_len=0;
-    uint8_t *output;
-    size_t output_len;
+        uint8_t *buffer;
+        size_t buffer_len=0;
+        uint8_t *output;
+        size_t output_len;
+        int opt;
+        int decode = 0;
+        int url = 0;
 
-    if (scanf("%1024mc%n", &buffer, (int *)&buffer_len) < 1) {
-        return 1;
-    }
-    
-    if (argc == 1) {
-        /* encode */
-        nsu_base64_encode_alloc(buffer, buffer_len, &output, &output_len);
-    } else if ((argv[1][0] == '-') && (argv[1][1] == 'd')) {
-        /* decode */
-        nsu_base64_decode_alloc(buffer, buffer_len, &output, &output_len);
-    } else {
-        fprintf(stderr, "Usage: %s [-d]\n", argv[0]);
-        return 1;
-    }
 
-    if (output != NULL) {
-        printf("%.*s", (int)output_len, output);
-        free(output);
-    }
+        while ((opt = getopt(argc, argv, "du")) != -1) {
+                switch (opt) {
+                case 'd':
+                        decode = 1;
+                        break;
+                case 'u':
+                        url = 1;
+                        break;
 
-    free(buffer);
+                default: /* '?' */
+                        fprintf(stderr, "Usage: %s [-d] [-u]\n", argv[0]);
+                        exit(EXIT_FAILURE);
 
-    return 0;
+                }
+        }
+
+        if (scanf("%1024mc%n", &buffer, (int *)&buffer_len) < 1) {
+                return 1;
+        }
+
+
+        if (decode) {
+                /* decode */
+                if (url) {
+                        nsu_base64_decode_alloc_url(buffer, buffer_len, &output, &output_len);
+                } else {
+
+                        nsu_base64_decode_alloc(buffer, buffer_len, &output, &output_len);
+                }
+        } else {
+                /* encode */
+                if (url) {
+                        nsu_base64_encode_alloc_url(buffer, buffer_len, &output, &output_len);
+                } else {
+                        nsu_base64_encode_alloc(buffer, buffer_len, &output, &output_len);
+                }
+        }
+
+        if (output != NULL) {
+                printf("%.*s", (int)output_len, output);
+                free(output);
+        }
+
+        free(buffer);
+
+        return 0;
 }
