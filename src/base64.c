@@ -110,34 +110,37 @@ static const uint8_t b64url_encoding_table[] = {
 static unsigned int mod_table[] = {0, 2, 1};
 
 
+
+
 /**
  * Base 64 encode data using a given encoding table.
  *
- * allocate a buffer and encode source data into it using the Base64 encoding.
+ * encode source data into buffer using the Base64 encoding.
  *
  * \param input The source data to encode.
  * \param input_length The length of the source data.
- * \param output The buffer to recive data into, the caller must free.
- * \param output_length The length of data placed in \a output
- * \return NSERROR_OK on success and \a output updated else error code.
+ * \param output The buffer to recive data into,
+ * \param output The output buffer
+ * \param output_length The size of the \a output buffer on entry updated with
+ *                        length written on exit.
+ * \return NSUERROR_OK on success and \a output_length updated else error code.
  */
 static nsuerror
-table_encode_alloc(const uint8_t *encoding_table,
-                   const uint8_t *input,
-                   size_t input_length,
-                   uint8_t **output,
-                   size_t *output_length)
+table_encode(const uint8_t *encoding_table,
+             const uint8_t *input,
+             size_t input_length,
+             uint8_t *encoded,
+             size_t *output_length)
 {
-        uint8_t *encoded;
         size_t encoded_len;
         size_t i; /* input index */
         size_t j; /* output index */
 
         encoded_len = 4 * ((input_length + 2) / 3);
 
-        encoded = malloc(encoded_len);
-        if (encoded == NULL) {
-                return NSUERROR_NOMEM;
+        if (encoded_len > *output_length) {
+                /* output buffer is too small */
+                return NSUERROR_NOSPACE;
         }
 
         for (i = 0, j = 0; i < input_length;) {
@@ -158,10 +161,54 @@ table_encode_alloc(const uint8_t *encoding_table,
                 encoded[encoded_len - 1 - i] = '=';
         }
 
-        *output = encoded;
         *output_length = encoded_len;
 
         return NSUERROR_OK;
+}
+
+
+
+/**
+ * Base 64 encode data using a given encoding table.
+ *
+ * allocate a buffer and encode source data into it using the Base64 encoding.
+ *
+ * \param input The source data to encode.
+ * \param input_length The length of the source data.
+ * \param output The buffer to recive data into, the caller must free.
+ * \param output_length The length of data placed in \a output
+ * \return NSERROR_OK on success and \a output updated else error code.
+ */
+static nsuerror
+table_encode_alloc(const uint8_t *encoding_table,
+                   const uint8_t *input,
+                   size_t input_length,
+                   uint8_t **output,
+                   size_t *output_length)
+{
+        uint8_t *encoded;
+        size_t encoded_len;
+        nsuerror res;
+
+        encoded_len = 4 * ((input_length + 2) / 3);
+
+        encoded = malloc(encoded_len);
+        if (encoded == NULL) {
+                return NSUERROR_NOMEM;
+        }
+
+        res = table_encode(encoding_table,
+                           input,
+                           input_length,
+                           encoded,
+                           &encoded_len);
+        if (res != NSUERROR_OK) {
+                free(encoded);
+        } else {
+                *output = encoded;
+                *output_length = encoded_len;
+        }
+        return res;
 }
 
 /*
@@ -182,6 +229,7 @@ nsu_base64_encode_alloc(const uint8_t *input,
                                   output_length);
 }
 
+
 /*
  * url base64 encoding
  *
@@ -198,6 +246,44 @@ nsu_base64_encode_alloc_url(const uint8_t *input,
                                   input_length,
                                   output,
                                   output_length);
+}
+
+
+/*
+ * standard base64 encoding
+ *
+ * exported interface documented in nsutils/base64.h
+ */
+nsuerror
+nsu_base64_encode(const uint8_t *input,
+                        size_t input_length,
+                        uint8_t *output,
+                        size_t *output_length)
+{
+        return table_encode(b64_encoding_table,
+                                  input,
+                                  input_length,
+                                  output,
+                                  output_length);
+}
+
+
+/*
+ * url base64 encoding
+ *
+ * exported interface documented in nsutils/base64.h
+ */
+nsuerror
+nsu_base64_encode_url(const uint8_t *input,
+                            size_t input_length,
+                            uint8_t *output,
+                            size_t *output_length)
+{
+        return table_encode(b64url_encoding_table,
+                            input,
+                            input_length,
+                            output,
+                            output_length);
 }
 
 
