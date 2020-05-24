@@ -2,11 +2,11 @@
 #
 # Makefile for libnsutils
 #
-# Copyright 2014-1015 Vincent Sanders <vince@netsurf-browser.org>
+# Copyright 2014-2020 Vincent Sanders <vince@netsurf-browser.org>
 
 # Component settings
 COMPONENT := nsutils
-COMPONENT_VERSION := 0.0.5
+COMPONENT_VERSION := 0.1.0
 # Default to a static library
 COMPONENT_TYPE ?= lib-static
 
